@@ -29,10 +29,10 @@ public class PalindromeCheckerApp {
 
 
         // ==============================
-        // UC3 - Reverse Logic
+        // UC3 - Reverse Using String
         // ==============================
         String original = "level";
-        String reversedUC3 = "";   // ✅ Different variable name
+        String reversedUC3 = "";
 
         for (int i = original.length() - 1; i >= 0; i--) {
             reversedUC3 = reversedUC3 + original.charAt(i);
@@ -42,6 +42,40 @@ public class PalindromeCheckerApp {
             System.out.println("UC3 Result: \"" + original + "\" is a Palindrome.");
         } else {
             System.out.println("UC3 Result: \"" + original + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
+
+
+        // ==============================
+        // UC4 - Character Array Based Check
+        // ==============================
+        String wordUC4 = "radar";
+
+        // Convert String to char[]
+        char[] characters = wordUC4.toCharArray();
+
+        int left = 0;
+        int right = characters.length - 1;
+
+        boolean isPalindrome = true;
+
+        // Two-pointer comparison
+        while (left < right) {
+
+            if (characters[left] != characters[right]) {
+                isPalindrome = false;
+                break;
+            }
+
+            left++;
+            right--;
+        }
+
+        if (isPalindrome) {
+            System.out.println("UC4 Result: \"" + wordUC4 + "\" is a Palindrome.");
+        } else {
+            System.out.println("UC4 Result: \"" + wordUC4 + "\" is NOT a Palindrome.");
         }
 
         System.out.println("----------------------------------");
