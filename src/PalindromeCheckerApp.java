@@ -1,6 +1,7 @@
 import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Deque;
 
 public class PalindromeCheckerApp {
 
@@ -19,29 +20,112 @@ public class PalindromeCheckerApp {
 
 
         // ==============================
-        // UC6 - Queue + Stack Based Check
+        // UC2 - Hardcoded Palindrome
+        // ==============================
+        String word = "madam";
+
+        if (word.equals("madam")) {
+            System.out.println("UC2 Result: \"" + word + "\" is a Palindrome.");
+        } else {
+            System.out.println("UC2 Result: \"" + word + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
+
+
+        // ==============================
+        // UC3 - Reverse Using String
+        // ==============================
+        String original = "level";
+        String reversed = "";
+
+        for (int i = original.length() - 1; i >= 0; i--) {
+            reversed = reversed + original.charAt(i);
+        }
+
+        if (original.equals(reversed)) {
+            System.out.println("UC3 Result: \"" + original + "\" is a Palindrome.");
+        } else {
+            System.out.println("UC3 Result: \"" + original + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
+
+
+        // ==============================
+        // UC4 - Character Array Based
+        // ==============================
+        String wordUC4 = "radar";
+        char[] characters = wordUC4.toCharArray();
+
+        int left = 0;
+        int right = characters.length - 1;
+        boolean isPalindromeUC4 = true;
+
+        while (left < right) {
+            if (characters[left] != characters[right]) {
+                isPalindromeUC4 = false;
+                break;
+            }
+            left++;
+            right--;
+        }
+
+        if (isPalindromeUC4) {
+            System.out.println("UC4 Result: \"" + wordUC4 + "\" is a Palindrome.");
+        } else {
+            System.out.println("UC4 Result: \"" + wordUC4 + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
+
+
+        // ==============================
+        // UC5 - Stack Based
+        // ==============================
+        String wordUC5 = "noon";
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < wordUC5.length(); i++) {
+            stack.push(wordUC5.charAt(i));
+        }
+
+        boolean isPalindromeUC5 = true;
+
+        for (int i = 0; i < wordUC5.length(); i++) {
+            char popped = stack.pop();
+            if (wordUC5.charAt(i) != popped) {
+                isPalindromeUC5 = false;
+                break;
+            }
+        }
+
+        if (isPalindromeUC5) {
+            System.out.println("UC5 Result: \"" + wordUC5 + "\" is a Palindrome.");
+        } else {
+            System.out.println("UC5 Result: \"" + wordUC5 + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
+
+
+        // ==============================
+        // UC6 - Queue + Stack
         // ==============================
         String wordUC6 = "civic";
-
-        Stack<Character> stack = new Stack<>();
+        Stack<Character> stackUC6 = new Stack<>();
         Queue<Character> queue = new LinkedList<>();
 
-        // Push to Stack and Enqueue to Queue
         for (int i = 0; i < wordUC6.length(); i++) {
             char ch = wordUC6.charAt(i);
-            stack.push(ch);      // LIFO
-            queue.add(ch);      // FIFO
+            stackUC6.push(ch);
+            queue.add(ch);
         }
 
         boolean isPalindromeUC6 = true;
 
-        // Compare dequeue (FIFO) and pop (LIFO)
         for (int i = 0; i < wordUC6.length(); i++) {
-
-            char fromStack = stack.pop();     // Last In First Out
-            char fromQueue = queue.remove();  // First In First Out
-
-            if (fromStack != fromQueue) {
+            if (stackUC6.pop() != queue.remove()) {
                 isPalindromeUC6 = false;
                 break;
             }
@@ -51,6 +135,34 @@ public class PalindromeCheckerApp {
             System.out.println("UC6 Result: \"" + wordUC6 + "\" is a Palindrome.");
         } else {
             System.out.println("UC6 Result: \"" + wordUC6 + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
+
+
+        // ==============================
+        // UC7 - Deque Based
+        // ==============================
+        String wordUC7 = "refer";
+        Deque<Character> deque = new LinkedList<>();
+
+        for (int i = 0; i < wordUC7.length(); i++) {
+            deque.addLast(wordUC7.charAt(i));
+        }
+
+        boolean isPalindromeUC7 = true;
+
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
+                isPalindromeUC7 = false;
+                break;
+            }
+        }
+
+        if (isPalindromeUC7) {
+            System.out.println("UC7 Result: \"" + wordUC7 + "\" is a Palindrome.");
+        } else {
+            System.out.println("UC7 Result: \"" + wordUC7 + "\" is NOT a Palindrome.");
         }
 
         System.out.println("----------------------------------");
