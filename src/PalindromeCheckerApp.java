@@ -1,4 +1,6 @@
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class PalindromeCheckerApp {
 
@@ -17,93 +19,38 @@ public class PalindromeCheckerApp {
 
 
         // ==============================
-        // UC2 - Hardcoded Palindrome
+        // UC6 - Queue + Stack Based Check
         // ==============================
-        String hardcodedWord = "madam";
-
-        if (hardcodedWord.equals("madam")) {
-            System.out.println("UC2 Result: \"" + hardcodedWord + "\" is a Palindrome.");
-        } else {
-            System.out.println("UC2 Result: \"" + hardcodedWord + "\" is NOT a Palindrome.");
-        }
-
-        System.out.println("----------------------------------");
-
-
-        // ==============================
-        // UC3 - Reverse Using String
-        // ==============================
-        String original = "level";
-        String reversedUC3 = "";
-
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversedUC3 = reversedUC3 + original.charAt(i);
-        }
-
-        if (original.equals(reversedUC3)) {
-            System.out.println("UC3 Result: \"" + original + "\" is a Palindrome.");
-        } else {
-            System.out.println("UC3 Result: \"" + original + "\" is NOT a Palindrome.");
-        }
-
-        System.out.println("----------------------------------");
-
-
-        // ==============================
-        // UC4 - Character Array Based Check
-        // ==============================
-        String wordUC4 = "radar";
-        char[] characters = wordUC4.toCharArray();
-
-        int left = 0;
-        int right = characters.length - 1;
-        boolean isPalindromeUC4 = true;
-
-        while (left < right) {
-            if (characters[left] != characters[right]) {
-                isPalindromeUC4 = false;
-                break;
-            }
-            left++;
-            right--;
-        }
-
-        if (isPalindromeUC4) {
-            System.out.println("UC4 Result: \"" + wordUC4 + "\" is a Palindrome.");
-        } else {
-            System.out.println("UC4 Result: \"" + wordUC4 + "\" is NOT a Palindrome.");
-        }
-
-        System.out.println("----------------------------------");
-
-
-        // ==============================
-        // UC5 - Stack Based Palindrome Check
-        // ==============================
-        String wordUC5 = "noon";
+        String wordUC6 = "civic";
 
         Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
 
-        // Push characters into stack
-        for (int i = 0; i < wordUC5.length(); i++) {
-            stack.push(wordUC5.charAt(i));
+        // Push to Stack and Enqueue to Queue
+        for (int i = 0; i < wordUC6.length(); i++) {
+            char ch = wordUC6.charAt(i);
+            stack.push(ch);      // LIFO
+            queue.add(ch);      // FIFO
         }
 
-        boolean isPalindromeUC5 = true;
+        boolean isPalindromeUC6 = true;
 
-        // Pop and compare
-        for (int i = 0; i < wordUC5.length(); i++) {
-            char popped = stack.pop();
-            if (wordUC5.charAt(i) != popped) {
-                isPalindromeUC5 = false;
+        // Compare dequeue (FIFO) and pop (LIFO)
+        for (int i = 0; i < wordUC6.length(); i++) {
+
+            char fromStack = stack.pop();     // Last In First Out
+            char fromQueue = queue.remove();  // First In First Out
+
+            if (fromStack != fromQueue) {
+                isPalindromeUC6 = false;
                 break;
             }
         }
 
-        if (isPalindromeUC5) {
-            System.out.println("UC5 Result: \"" + wordUC5 + "\" is a Palindrome.");
+        if (isPalindromeUC6) {
+            System.out.println("UC6 Result: \"" + wordUC6 + "\" is a Palindrome.");
         } else {
-            System.out.println("UC5 Result: \"" + wordUC5 + "\" is NOT a Palindrome.");
+            System.out.println("UC6 Result: \"" + wordUC6 + "\" is NOT a Palindrome.");
         }
 
         System.out.println("----------------------------------");
