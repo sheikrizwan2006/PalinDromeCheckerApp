@@ -166,6 +166,78 @@ public class PalindromeCheckerApp {
         }
 
         System.out.println("----------------------------------");
+
+
+        // ==============================
+        // UC8 - Linked List Based
+        // ==============================
+        String wordUC8 = "racecar";
+
+        class Node {
+            char data;
+            Node next;
+
+            Node(char data) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        Node head = null;
+        Node tail = null;
+
+        for (int i = 0; i < wordUC8.length(); i++) {
+            Node newNode = new Node(wordUC8.charAt(i));
+
+            if (head == null) {
+                head = newNode;
+                tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
+            }
+        }
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        Node prev = null;
+        Node current = slow;
+        Node nextNode;
+
+        while (current != null) {
+            nextNode = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextNode;
+        }
+
+        Node firstHalf = head;
+        Node secondHalf = prev;
+
+        boolean isPalindromeUC8 = true;
+
+        while (secondHalf != null) {
+            if (firstHalf.data != secondHalf.data) {
+                isPalindromeUC8 = false;
+                break;
+            }
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
+        }
+
+        if (isPalindromeUC8) {
+            System.out.println("UC8 Result: \"" + wordUC8 + "\" is a Palindrome.");
+        } else {
+            System.out.println("UC8 Result: \"" + wordUC8 + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
         System.out.println("Program Finished.");
     }
 }
