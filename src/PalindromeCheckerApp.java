@@ -254,6 +254,35 @@ public class PalindromeCheckerApp {
         }
 
         System.out.println("----------------------------------");
+
+
+        // ==============================
+        // UC10 - Case-Insensitive & Space-Ignored
+        // ==============================
+        String wordUC10 = "A man a plan a canal Panama";
+
+        String normalized = wordUC10.replaceAll("\\s+", "").toLowerCase();
+
+        int leftUC10 = 0;
+        int rightUC10 = normalized.length() - 1;
+        boolean isPalindromeUC10 = true;
+
+        while (leftUC10 < rightUC10) {
+            if (normalized.charAt(leftUC10) != normalized.charAt(rightUC10)) {
+                isPalindromeUC10 = false;
+                break;
+            }
+            leftUC10++;
+            rightUC10--;
+        }
+
+        if (isPalindromeUC10) {
+            System.out.println("UC10 Result: \"" + wordUC10 + "\" is a Palindrome (Ignoring Case & Spaces).");
+        } else {
+            System.out.println("UC10 Result: \"" + wordUC10 + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
         System.out.println("Program Finished.");
     }
 
