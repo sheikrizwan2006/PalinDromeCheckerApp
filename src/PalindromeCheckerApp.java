@@ -238,6 +238,36 @@ public class PalindromeCheckerApp {
         }
 
         System.out.println("----------------------------------");
+
+
+        // ==============================
+        // UC9 - Recursive Based
+        // ==============================
+        String wordUC9 = "madam";
+
+        boolean isPalindromeUC9 = isPalindrome(wordUC9, 0, wordUC9.length() - 1);
+
+        if (isPalindromeUC9) {
+            System.out.println("UC9 Result: \"" + wordUC9 + "\" is a Palindrome.");
+        } else {
+            System.out.println("UC9 Result: \"" + wordUC9 + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
         System.out.println("Program Finished.");
+    }
+
+    // Recursive Method for UC9
+    public static boolean isPalindrome(String str, int start, int end) {
+
+        if (start >= end) {
+            return true;
+        }
+
+        if (str.charAt(start) != str.charAt(end)) {
+            return false;
+        }
+
+        return isPalindrome(str, start + 1, end - 1);
     }
 }
