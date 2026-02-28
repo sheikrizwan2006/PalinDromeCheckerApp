@@ -5,6 +5,27 @@ import java.util.Deque;
 
 public class PalindromeCheckerApp {
 
+    // ==============================
+    // UC11 - OOP Service Class
+    // ==============================
+    static class PalindromeService {
+
+        public boolean checkPalindrome(String input) {
+
+            int left = 0;
+            int right = input.length() - 1;
+
+            while (left < right) {
+                if (input.charAt(left) != input.charAt(right)) {
+                    return false;
+                }
+                left++;
+                right--;
+            }
+            return true;
+        }
+    }
+
     public static void main(String[] args) {
 
         // ==============================
@@ -18,7 +39,6 @@ public class PalindromeCheckerApp {
         System.out.println("Version          : 1.0.0");
         System.out.println("----------------------------------");
 
-
         // ==============================
         // UC2 - Hardcoded Palindrome
         // ==============================
@@ -31,7 +51,6 @@ public class PalindromeCheckerApp {
         }
 
         System.out.println("----------------------------------");
-
 
         // ==============================
         // UC3 - Reverse Using String
@@ -50,7 +69,6 @@ public class PalindromeCheckerApp {
         }
 
         System.out.println("----------------------------------");
-
 
         // ==============================
         // UC4 - Character Array Based
@@ -79,7 +97,6 @@ public class PalindromeCheckerApp {
 
         System.out.println("----------------------------------");
 
-
         // ==============================
         // UC5 - Stack Based
         // ==============================
@@ -107,7 +124,6 @@ public class PalindromeCheckerApp {
         }
 
         System.out.println("----------------------------------");
-
 
         // ==============================
         // UC6 - Queue + Stack
@@ -139,7 +155,6 @@ public class PalindromeCheckerApp {
 
         System.out.println("----------------------------------");
 
-
         // ==============================
         // UC7 - Deque Based
         // ==============================
@@ -166,7 +181,6 @@ public class PalindromeCheckerApp {
         }
 
         System.out.println("----------------------------------");
-
 
         // ==============================
         // UC8 - Linked List Based
@@ -239,12 +253,10 @@ public class PalindromeCheckerApp {
 
         System.out.println("----------------------------------");
 
-
         // ==============================
         // UC9 - Recursive Based
         // ==============================
         String wordUC9 = "madam";
-
         boolean isPalindromeUC9 = isPalindrome(wordUC9, 0, wordUC9.length() - 1);
 
         if (isPalindromeUC9) {
@@ -255,12 +267,10 @@ public class PalindromeCheckerApp {
 
         System.out.println("----------------------------------");
 
-
         // ==============================
         // UC10 - Case-Insensitive & Space-Ignored
         // ==============================
         String wordUC10 = "A man a plan a canal Panama";
-
         String normalized = wordUC10.replaceAll("\\s+", "").toLowerCase();
 
         int leftUC10 = 0;
@@ -280,6 +290,22 @@ public class PalindromeCheckerApp {
             System.out.println("UC10 Result: \"" + wordUC10 + "\" is a Palindrome (Ignoring Case & Spaces).");
         } else {
             System.out.println("UC10 Result: \"" + wordUC10 + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("----------------------------------");
+
+        // ==============================
+        // UC11 - Object-Oriented Service Usage
+        // ==============================
+        String wordUC11 = "level";
+        PalindromeService service = new PalindromeService();
+
+        boolean isPalindromeUC11 = service.checkPalindrome(wordUC11);
+
+        if (isPalindromeUC11) {
+            System.out.println("UC11 Result: \"" + wordUC11 + "\" is a Palindrome.");
+        } else {
+            System.out.println("UC11 Result: \"" + wordUC11 + "\" is NOT a Palindrome.");
         }
 
         System.out.println("----------------------------------");
